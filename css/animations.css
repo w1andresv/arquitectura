@@ -1,0 +1,291 @@
+/* ============================================
+   FIERRO ARQUITECTURA — ANIMATIONS
+   Custom animation styles and AOS overrides
+   ============================================ */
+
+/* ── AOS OVERRIDES ── */
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+/* Smoother AOS transitions */
+[data-aos] {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* ── PAGE LOAD ANIMATIONS ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── HERO ANIMATIONS ── */
+.hero__bg img {
+  animation: heroParallax 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroParallax {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.hero__tag {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero__title {
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero__subtitle {
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.hero__ctas {
+  animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+
+/* ── HEADER ANIMATION ── */
+.header {
+  animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+/* ── TEXT REVEAL ANIMATION ── */
+@keyframes revealText {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* ── COUNTER ANIMATION ── */
+.stat__number {
+  transition: all 0.05s linear;
+}
+
+/* ── SERVICE CARD SHIMMER ── */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 169, 110, 0.03),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.service-card:hover::before {
+  left: 125%;
+}
+
+/* ── PORTFOLIO HOVER ANIMATION ── */
+.portfolio__item-overlay {
+  backdrop-filter: blur(2px);
+}
+
+.portfolio__item-cat {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-base) 0.05s;
+}
+
+.portfolio__item-title {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-base) 0.1s;
+}
+
+.portfolio__item-desc {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-base) 0.15s;
+}
+
+.portfolio__item:hover .portfolio__item-cat,
+.portfolio__item:hover .portfolio__item-title,
+.portfolio__item:hover .portfolio__item-desc {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ── BLOG CARD HOVER ── */
+.blog-card__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-surface) 0%, transparent 40%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.blog-card:hover .blog-card__img::after {
+  opacity: 0.3;
+}
+
+/* ── PROCESS STEP ANIMATION ── */
+.process__step {
+  transition: all var(--transition-base);
+}
+
+.process__step:hover {
+  transform: translateX(8px);
+}
+
+/* ── CONTACT FORM FOCUS ANIMATION ── */
+.form-input {
+  transition: all var(--transition-base);
+}
+
+.form-input:focus {
+  transform: translateY(-1px);
+}
+
+/* ── NAV LINK HOVER EFFECT ── */
+@keyframes navLinkUnderline {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ── WHATSAPP TOOLTIP ── */
+.whatsapp-float::after {
+  content: '¿Necesitas ayuda?';
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5rem 1rem;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.whatsapp-float:hover::after {
+  opacity: 1;
+}
+
+/* ── STAGGER ANIMATION UTILITY ── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ── SKELETON LOADING (for images) ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-surface) 25%,
+    var(--bg-surface-hover) 50%,
+    var(--bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ── PARALLAX HINT ── */
+@media (min-width: 1024px) {
+  .hero__bg img {
+    will-change: transform;
+  }
+}
+
+/* ── SCROLL INDICATOR ── */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-8px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-4px) translateX(-50%);
+  }
+}
+
+/* ── REDUCED MOTION OVERRIDES ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg img {
+    animation: none;
+  }
+
+  .hero__tag,
+  .hero__title,
+  .hero__subtitle,
+  .hero__ctas {
+    animation: none;
+    opacity: 1;
+  }
+
+  .whatsapp-float::before {
+    animation: none;
+  }
+
+  .service-card::before {
+    display: none;
+  }
+
+  .process__step:hover {
+    transform: none;
+  }
+}
